@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <ul class="nav nav-tabs mb-3">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Badges</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">Students</a>
+    </li>
+  </ul>
+  <div class="mb-3">
+    <input type="text" class="form-control" placeholder="Search badges" />
+  </div>
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th>Badge</th>
+          <th>Total Goals</th>
+          <th>Completed</th>
+          <th>In Progress</th>
+          <th>Not Started</th>
+          <th>Completion Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let badge of badges">
+          <td>
+            <img [src]="badge.image" alt="badge" width="32" class="me-2" />
+            {{ badge.title }}
+          </td>
+          <td>{{ badge.totalGoals }}</td>
+          <td>{{ badge.completed }}</td>
+          <td>{{ badge.inProgress }}</td>
+          <td>{{ badge.notStarted }}</td>
+          <td style="min-width: 120px;">
+            <div class="d-flex align-items-center">
+              <div class="progress flex-grow-1 me-2" style="height: 8px;">
+                <div class="progress-bar" role="progressbar" [style.width.%]="badge.completionRate"></div>
+              </div>
+              <span>{{ badge.completionRate }}%</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

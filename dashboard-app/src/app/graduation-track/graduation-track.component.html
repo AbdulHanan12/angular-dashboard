@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <!-- Simple Donut Chart Placeholder -->
+      <div class="d-flex flex-column align-items-center justify-content-center" style="height: 250px;">
+        <svg width="180" height="180" viewBox="0 0 42 42" class="donut">
+          <circle class="donut-hole" cx="21" cy="21" r="15.91549431" fill="#fff"></circle>
+          <circle class="donut-ring" cx="21" cy="21" r="15.91549431" fill="transparent" stroke="#eee" stroke-width="3"></circle>
+          <ng-container *ngIf="summary">
+            <ng-container *ngFor="let seg of summary.trackCompletion; let i = index">
+              <circle
+                [attr.stroke]="seg.color"
+                [attr.stroke-width]="3"
+                [attr.stroke-dasharray]="'25 75'"
+                [attr.stroke-dashoffset]="i * 25"
+                cx="21" cy="21" r="15.91549431" fill="transparent"
+                style="transform: rotate(-90deg); transform-origin: 50% 50%;"
+              ></circle>
+            </ng-container>
+          </ng-container>
+        </svg>
+        <div class="position-absolute text-center">
+          <h2 class="fw-bold mb-0">{{ summary?.totalStudents }}</h2>
+          <div>Total Students</div>
+        </div>
+      </div>
+      <ul class="list-unstyled mt-3">
+        <li *ngFor="let seg of summary?.trackCompletion" class="d-flex align-items-center mb-1">
+          <span class="me-2" [style.background]="seg.color" style="display:inline-block;width:12px;height:12px;border-radius:50%"></span>
+          {{ seg.label }} <span class="ms-auto">{{ seg.value }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-8">
+      <div class="row g-3">
+        <div class="col-6 col-lg-3" *ngIf="summary">
+          <div class="card text-center">
+            <div class="card-body">
+              <div class="fw-bold fs-4">{{ summary.totalStudents }}</div>
+              <div class="text-muted">Total Students Enrolled</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3" *ngIf="summary">
+          <div class="card text-center">
+            <div class="card-body">
+              <div class="fw-bold fs-4">{{ summary.badges }}</div>
+              <div class="text-muted">Badges</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3" *ngIf="summary">
+          <div class="card text-center">
+            <div class="card-body">
+              <div class="fw-bold fs-4">{{ summary.completionRate }}%</div>
+              <div class="text-muted">Completion Rate</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3" *ngIf="summary">
+          <div class="card text-center">
+            <div class="card-body">
+              <div class="fw-bold fs-4">{{ summary.studentsAtRisk }}</div>
+              <div class="text-muted">Students At Risk</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
